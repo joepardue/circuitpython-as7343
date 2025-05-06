@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: 2025 Your Name
+# SPDX-License-Identifier: MIT
+
+name: Build CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install black isort pylint circuitpython-build-tools
+          pip install -r requirements.txt
+      - name: Run Black
+        run: black --check .
+      - name: Run Isort
+        run: isort --check-only .
+      - name: Run Pylint
+        run: pylint as7343.py
