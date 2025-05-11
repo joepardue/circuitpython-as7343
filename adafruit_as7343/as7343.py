@@ -247,7 +247,21 @@ class AS7343:
 
         :return: List of values in the order: F1, F2, F3, F4, FY, F5, F6, F7, F8, FZ, FXL, NIR, CLR
         """
-        labels = ["F1", "F2", "F3", "F4", "FY", "F5", "F6", "F7", "F8", "FZ", "FXL", "NIR", "CLR"]
+        labels = [
+            "F1",
+            "F2",
+            "F3",
+            "F4",
+            "FY",
+            "F5",
+            "F6",
+            "F7",
+            "F8",
+            "FZ",
+            "FXL",
+            "NIR",
+            "CLR",
+        ]
         return [self._last_data.get(label, 0) for label in labels]
 
     def _define_smux_modes(self):
@@ -258,8 +272,35 @@ class AS7343:
         """
         return {
             SMUX_VISIBLE: {
-                "smux": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0x01, 0x02, 0x04, 0x08, 0, 0x10, 0, 0, 0, 0, 0],
-                "map": [("F1", 0x95), ("F2", 0x97), ("F3", 0x99), ("F4", 0x9B), ("FY", 0x9D)],
+                "smux": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0x01,
+                    0x02,
+                    0x04,
+                    0x08,
+                    0,
+                    0x10,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                ],
+                "map": [
+                    ("F1", 0x95),
+                    ("F2", 0x97),
+                    ("F3", 0x99),
+                    ("F4", 0x9B),
+                    ("FY", 0x9D),
+                ],
             },
             SMUX_NIR: {
                 "smux": [
@@ -420,7 +461,9 @@ class AS7343:
         flagged = []
         for label, val in data.items():
             if not isinstance(val, int):
-                print(f"⚠️ TypeError: {label} = {val} (type: {type(val)}) — expected int")
+                print(
+                    f"⚠️ TypeError: {label} = {val} (type: {type(val)}) — expected int"
+                )
                 continue
             if val >= threshold:
                 flagged.append((label, val))
