@@ -107,3 +107,4 @@ Contributions are welcome! Please read our `Code of Conduct
 <https://github.com/joepardue/Adafruit_CircuitPython_as7343/blob/HEAD/CODE_OF_CONDUCT.md>`_
 before contributing to help this project stay welcoming.
 
+# (CI trigger only)
