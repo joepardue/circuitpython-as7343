@@ -111,7 +111,7 @@ class AS7343:
     def initialize(self):
         """
         Perform a software reset and basic startup configuration.
-        
+
         Resets the device to its default state and prepares it for measurements.
         """
         self._write_u8(_CONTROL, _CONTROL_SW_RESET)
@@ -123,11 +123,11 @@ class AS7343:
     def gain(self):
         """
         The ADC gain setting for the sensor.
-        
+
         This setting controls the amplification of the sensor signal before it
         is converted to a digital value. Higher gain values allow detection of
         dimmer light sources, but may cause saturation with bright sources.
-        
+
         :return: Current gain setting (one of the GAIN_* constants)
         """
         return self._gain
@@ -136,7 +136,7 @@ class AS7343:
     def gain(self, value):
         """
         Set the ADC gain for the sensor.
-        
+
         :param value: One of the GAIN_* constants (0x00-0x0C)
         :raises ValueError: If an invalid gain value is provided
         """
@@ -149,11 +149,11 @@ class AS7343:
     def integration_time(self):
         """
         The integration time in microseconds.
-        
+
         This controls how long the sensor collects light for each measurement.
         Longer integration times provide better results in low light but may
         cause saturation in bright conditions.
-        
+
         :return: Integration time in microseconds
         """
         return self._integration_time_us
@@ -162,30 +162,30 @@ class AS7343:
     def integration_time(self, integration_time_us):
         """
         Set the integration time for spectral measurements.
-        
+
         :param integration_time_us: Desired integration time in microseconds
         :raises ValueError: If integration time is too long
         """
         resolution = 2.78
         if integration_time_us > (65535 * resolution):
             raise ValueError("Integration time too long.")
-        
+
         # Calculate ASTEP with bounds checking
         astep_value = int((integration_time_us - resolution) / resolution)
         astep_value = min(astep_value, 65535)
         astep_value = astep_value & 0xFFFE
-        
+
         self._write_u8(_ATIME, 0)
         self._write_u16(_ASTEP, astep_value)
         self._integration_time_us = integration_time_us
-        
+
     def set_smux_mode(self, mode_name):
         """
         Apply a predefined SMUX (sensor multiplexer) configuration.
-        
+
         The AS7343 has more channels than ADCs, so channel mapping is controlled
         by the SMUX configuration. This method configures a specific channel set.
-        
+
         :param mode_name: One of the SMUX_* constants
         :raises ValueError: If an invalid mode name is provided
         """
@@ -200,7 +200,7 @@ class AS7343:
     def get_smux_map(self, mode_name):
         """
         Get the channel mapping for a specific SMUX mode.
-        
+
         :param mode_name: One of the SMUX_* constants
         :return: List of (label, register_address) tuples
         :raises ValueError: If an invalid mode name is provided
@@ -212,10 +212,10 @@ class AS7343:
     def read_all(self):
         """
         Perform a complete scan of all 14 spectral channels.
-        
+
         This method takes three separate measurements with different SMUX
         configurations to read all channels, and combines the results.
-        
+
         :return: Dictionary with channel labels (F1, F2, etc.) mapping to values
         """
         full_data = {}
@@ -234,7 +234,7 @@ class AS7343:
     def data(self):
         """
         The most recent spectral measurement data.
-        
+
         :return: Dictionary mapping channel labels to values
         """
         return self._last_data
@@ -243,7 +243,7 @@ class AS7343:
     def channels(self):
         """
         All spectral channel values in a standard order.
-        
+
         :return: List of values in the order: F1, F2, F3, F4, FY, F5, F6, F7, F8, FZ, FXL, NIR, CLR
         """
         labels = ["F1", "F2", "F3", "F4", "FY", "F5", "F6", "F7", "F8", "FZ", "FXL", "NIR", "CLR"]
@@ -252,7 +252,7 @@ class AS7343:
     def _define_smux_modes(self):
         """
         Define the SMUX configurations for all channel groups.
-        
+
         :return: Dictionary of SMUX mode configurations
         """
         return {
@@ -273,7 +273,7 @@ class AS7343:
     def start_measurement(self):
         """
         Begin a spectral measurement.
-        
+
         This starts the sensor integration. Call stop_measurement() after an
         appropriate delay to complete the measurement.
         """
@@ -282,7 +282,7 @@ class AS7343:
     def stop_measurement(self):
         """
         End a spectral measurement.
-        
+
         This stops sensor integration and makes the data available for reading.
         """
         self._write_u8(_ENABLE, _ENABLE_PON)
@@ -290,9 +290,9 @@ class AS7343:
     def read_smux_mode(self, mode_name):
         """
         Read only the channels defined in one SMUX mode.
-        
+
         This is more efficient than read_all() when only specific channels are needed.
-        
+
         :param mode_name: One of the SMUX_* constants
         :return: Dictionary of channel labels mapping to values
         """
@@ -306,9 +306,9 @@ class AS7343:
     def enable_low_power_mode(self, enable=True):
         """
         Enable or disable low power mode.
-        
+
         In low power mode, the device consumes less power when idle.
-        
+
         :param enable: True to enable, False to disable low power mode
         """
         cfg0 = self._read_u8(_CFG0)
@@ -318,9 +318,9 @@ class AS7343:
     def enable_sleep_after_interrupt(self, enable=True):
         """
         Enable or disable Sleep After Interrupt (SAI) mode.
-        
+
         In SAI mode, the device enters sleep state when an interrupt occurs.
-        
+
         :param enable: True to enable, False to disable SAI
         """
         cfg3 = self._read_u8(_CFG3)
@@ -334,7 +334,7 @@ class AS7343:
     def is_device_sleeping(self):
         """
         Check if the device is in sleep mode.
-        
+
         :return: True if sleeping, False otherwise
         """
         return (self._read_u8(_STATUS4) & _SAI_ACTIVE) != 0
@@ -342,7 +342,7 @@ class AS7343:
     def shutdown(self):
         """
         Power down the device.
-        
+
         This puts the device in the lowest power consumption state.
         """
         self._write_u8(_ENABLE, 0x00)
@@ -350,16 +350,16 @@ class AS7343:
     def wake(self):
         """
         Wake up the device from shutdown.
-        
+
         This restores power to the device but does not start measurements.
         """
         self._write_u8(_ENABLE, _ENABLE_PON)
         time.sleep(0.01)
-        
+
     def check_thresholds(self, threshold, data=None):
         """
         Return a list of channels that exceed a given threshold.
-        
+
         :param threshold: Warning threshold value (int)
         :param data: Optional dictionary of channel readings (default: self.data)
         :return: List of (label, value) pairs where value >= threshold
@@ -379,7 +379,7 @@ class AS7343:
     # ------------------------------------------------
     # Low-level register I/O methods
     # ------------------------------------------------
-    
+
     def _read_u8(self, reg):
         """Read an 8-bit unsigned value from the specified register."""
         buf = bytearray(1)
