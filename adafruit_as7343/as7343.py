@@ -26,8 +26,9 @@ Implementation Notes
 
 """
 
-import time
 import struct
+import time
+
 from adafruit_bus_device.i2c_device import I2CDevice
 
 __version__ = "0.0.1"
@@ -58,29 +59,29 @@ _CONTROL_SW_RESET = 0x08  # Software Reset
 
 # Low power and interrupt flags
 _LOW_POWER_BIT = 0x20  # Bit 5 in CFG0
-_SAI_BIT = 0x10        # Bit 4 in CFG3 (Sleep After Interrupt)
+_SAI_BIT = 0x10  # Bit 4 in CFG3 (Sleep After Interrupt)
 _CLEAR_SAI_ACT = 0x01  # Bit 0 in CONTROL
-_SAI_ACTIVE = 0x02     # Bit 1 in STATUS4
+_SAI_ACTIVE = 0x02  # Bit 1 in STATUS4
 
 # Gain values
-GAIN_0_5X = 0x00   #: 0.5x gain setting
-GAIN_1X = 0x01     #: 1x gain setting
-GAIN_2X = 0x02     #: 2x gain setting
-GAIN_4X = 0x03     #: 4x gain setting
-GAIN_8X = 0x04     #: 8x gain setting
-GAIN_16X = 0x05    #: 16x gain setting
-GAIN_32X = 0x06    #: 32x gain setting
-GAIN_64X = 0x07    #: 64x gain setting
-GAIN_128X = 0x08   #: 128x gain setting
-GAIN_256X = 0x09   #: 256x gain setting
-GAIN_512X = 0x0A   #: 512x gain setting
+GAIN_0_5X = 0x00  #: 0.5x gain setting
+GAIN_1X = 0x01  #: 1x gain setting
+GAIN_2X = 0x02  #: 2x gain setting
+GAIN_4X = 0x03  #: 4x gain setting
+GAIN_8X = 0x04  #: 8x gain setting
+GAIN_16X = 0x05  #: 16x gain setting
+GAIN_32X = 0x06  #: 32x gain setting
+GAIN_64X = 0x07  #: 64x gain setting
+GAIN_128X = 0x08  #: 128x gain setting
+GAIN_256X = 0x09  #: 256x gain setting
+GAIN_512X = 0x0A  #: 512x gain setting
 GAIN_1024X = 0x0B  #: 1024x gain setting
 GAIN_2048X = 0x0C  #: 2048x gain setting
 
 # SMUX mode identifiers
 SMUX_VISIBLE = "VISIBLE"  #: SMUX configuration for visible light channels (F1-F4, FY)
-SMUX_NIR = "NIR"          #: SMUX configuration for NIR channels (F6-F8, FXL, NIR, CLR)
-SMUX_FZF5 = "FZF5"        #: SMUX configuration for additional channels (FZ, F5)
+SMUX_NIR = "NIR"  #: SMUX configuration for NIR channels (F6-F8, FXL, NIR, CLR)
+SMUX_FZF5 = "FZF5"  #: SMUX configuration for additional channels (FZ, F5)
 
 
 class AS7343:
@@ -257,17 +258,66 @@ class AS7343:
         """
         return {
             SMUX_VISIBLE: {
-                "smux": [0,0,0,0,0,0,0,0,0,0x01,0x02,0x04,0x08,0,0x10,0,0,0,0,0],
-                "map": [("F1", 0x95), ("F2", 0x97), ("F3", 0x99), ("F4", 0x9B), ("FY", 0x9D)]
+                "smux": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0x01, 0x02, 0x04, 0x08, 0, 0x10, 0, 0, 0, 0, 0],
+                "map": [("F1", 0x95), ("F2", 0x97), ("F3", 0x99), ("F4", 0x9B), ("FY", 0x9D)],
             },
             SMUX_NIR: {
-                "smux": [0,0,0,0,0,0,0,0,0,0x40,0x02,0x10,0x20,0,0x80,0x04,0,0,0,0],
-                "map": [("F6", 0x95), ("F7", 0x97), ("F8", 0x99), ("FXL", 0x9B), ("NIR", 0x9D), ("CLR", 0x9F)]
+                "smux": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0x40,
+                    0x02,
+                    0x10,
+                    0x20,
+                    0,
+                    0x80,
+                    0x04,
+                    0,
+                    0,
+                    0,
+                    0,
+                ],
+                "map": [
+                    ("F6", 0x95),
+                    ("F7", 0x97),
+                    ("F8", 0x99),
+                    ("FXL", 0x9B),
+                    ("NIR", 0x9D),
+                    ("CLR", 0x9F),
+                ],
             },
             SMUX_FZF5: {
-                "smux": [0,0,0,0,0,0,0,0,0,0x40,0x02,0x10,0x04,0,0x80,0x01,0,0,0,0],
-                "map": [("FZ", 0x95), ("F5", 0x97)]
-            }
+                "smux": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0x40,
+                    0x02,
+                    0x10,
+                    0x04,
+                    0,
+                    0x80,
+                    0x01,
+                    0,
+                    0,
+                    0,
+                    0,
+                ],
+                "map": [("FZ", 0x95), ("F5", 0x97)],
+            },
         }
 
     def start_measurement(self):
