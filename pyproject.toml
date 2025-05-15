@@ -2,7 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
-[build-system]requires = [
+[build-system]
+requires = [
     "setuptools",
     "wheel",
     "setuptools-scm",
