@@ -31,8 +31,8 @@ import time
 import struct
 from adafruit_bus_device.i2c_device import I2CDevice
 
-__version__ = "0.0.1"
-__repo__ = "https://github.com/your_username/CircuitPython_AS7343.git"
+__version__ = "0.0.0+auto.0"
+__repo__ = "https://github.com/joepardue/CircuitPython_AS7343.git"
 
 # I2C Address
 _AS7343_I2C_ADDR = 0x39
