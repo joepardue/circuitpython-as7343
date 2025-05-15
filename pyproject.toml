@@ -2,18 +2,17 @@
 #
 # SPDX-License-Identifier: MIT
 
-[build-system]
-requires = [
+[build-system]requires = [
     "setuptools",
     "wheel",
     "setuptools-scm",
 ]
 
 [project]
-name = "circuitpython-as7343"
+name = "as7343"
 description = "CircuitPython library for AS7343 spectral sensor"
 authors = [
-    {name = "Joe Pardue", email = "your.email@example.com"},
+    {name = "Joe Pardue", email = "joepardue47@gmail.com"},
 ]
 urls = {Homepage = "https://github.com/joepardue/circuitpython-as7343"}
 keywords = [
@@ -36,4 +35,4 @@ classifiers = [
 dynamic = ["dependencies", "version"]
 
 [tool.setuptools]
-packages = ["circuitpython_as7343"]
+packages = ["as7343"]
