@@ -10,7 +10,7 @@ requires = [
 ]
 
 [project]
-name = "adafruit-circuitpython-as7343"
+name = "circuitpython-as7343"
 description = "CircuitPython library for AS7343 spectral sensor"
 authors = [
     {name = "Joe Pardue", email = "your.email@example.com"},
@@ -36,4 +36,4 @@ classifiers = [
 dynamic = ["dependencies", "version"]
 
 [tool.setuptools]
-packages = ["adafruit_as7343"]
+packages = ["circuitpython_as7343"]
