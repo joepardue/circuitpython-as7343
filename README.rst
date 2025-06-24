@@ -88,6 +88,20 @@ Supported Channels
 - NIR – Near infrared (~855 nm)
 - CLR – Clear (broadband)
 
+## Included in the CircuitPython Community Bundle 🌟
+
+This `circuitpython-as7343` library has been officially accepted into the
+[CircuitPython Community Library Bundle](https://github.com/adafruit/CircuitPython_Community_Bundle).
+
+This means it has undergone review by the CircuitPython team and community maintainers
+to ensure it meets quality and compatibility standards.
+
+You can find it listed in the [Python on Microcontrollers Newsletter (May 20, 2025)](https://blog.adafruit.com/2025/05/20/icymi-python-on-microcontrollers-newsletter-python-jumps-in-popularity-hacking-pis-new-circuitpython-and-more-circuitpython-python-micropython-raspberry_pi/)
+under "New CircuitPython Libraries."
+
+To easily use this library, it's recommended to download the full bundle from
+[circuitpython.org/libraries](https://circuitpython.org/libraries).
+
 License
 -------
 
