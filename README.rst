@@ -1,6 +1,11 @@
 AS7343 CircuitPython Library
 =============================
 
+> **⚠️ KNOWN ISSUE**: The current `channels` property returns data in SMUX reading 
+> order rather than spectral wavelength order. This will be fixed in an upcoming 
+> release (target: 2 weeks). For now, use individual channel properties or the 
+> `data` dictionary for accurate spectral analysis. GitHub issue discussion ongoing.
+
 A CircuitPython driver for the AMS AS7343 14-channel spectral sensor. This device provides high-resolution spectral measurements across the visible and near-infrared spectrum, making it ideal for:
 
 - Color measurement and classification
