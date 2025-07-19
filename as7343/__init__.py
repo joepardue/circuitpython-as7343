@@ -245,20 +245,20 @@ class AS7343:
         """
         All spectral channel values in a standard order.
 
-        :return: List of values in the order: F1, F2, F3, F4, FY, F5, F6, F7, F8, FZ, FXL, NIR, CLR
+        :return: List of values in the order: F1, F2, FZ, F3, F4, F5, FY, FXL, F6, F7, F8, NIR, CLR
         """
         labels = [
             "F1",
             "F2",
+            "FZ",
             "F3",
             "F4",
-            "FY",
             "F5",
+            "FY",
+            "FXL",
             "F6",
             "F7",
             "F8",
-            "FZ",
-            "FXL",
             "NIR",
             "CLR",
         ]

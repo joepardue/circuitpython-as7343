@@ -38,19 +38,19 @@ GAIN_MAP = {
     12: "2048x",
 }
 
-# Channel names
+# Channel names (spectral wavelength order)
 CHANNEL_NAMES = [
     "F1",
     "F2",
+    "FZ",
     "F3",
     "F4",
-    "FY",
     "F5",
+    "FY",
+    "FXL",
     "F6",
     "F7",
     "F8",
-    "FZ",
-    "FXL",
     "NIR",
     "CLR",
 ]
@@ -463,20 +463,20 @@ def test_full_channel_scan(device):
     # Stop measurement
     write_u8(device, _ENABLE, 0x01)  # PON=1
 
-    # Display all channel readings in order
-    print("\nAll Channel Readings:")
+    # Display all channel readings in spectral wavelength order
+    print("\nAll Channel Readings (Spectral Wavelength Order):")
     channel_order = [
         "F1",
         "F2",
+        "FZ",
         "F3",
         "F4",
-        "FY",
         "F5",
+        "FY",
+        "FXL",
         "F6",
         "F7",
         "F8",
-        "FZ",
-        "FXL",
         "NIR",
         "CLR",
     ]
