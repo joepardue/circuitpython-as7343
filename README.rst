@@ -1,6 +1,8 @@
 AS7343 CircuitPython Library
 =============================
 
+7/20/25 THERE IS A PROBLEM WITH F4 THAT I AM LOOKING INTO. I'D RECOMMEND CHECKING BACK IN A FEW DAYS
+
 A CircuitPython driver for the AMS AS7343 14-channel spectral sensor. This device provides high-resolution spectral measurements across the visible and near-infrared spectrum, making it ideal for:
 
 - Color measurement and classification
