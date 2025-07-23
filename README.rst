@@ -1,7 +1,7 @@
 AS7343 CircuitPython Library
 =============================
 
-*7/23/25 - I just came across the newly released SparkFun library for the AS7343. Comparisons are shown at the end of this README.md. TL;DR: Use this library for CircuitPython-only projects that need advanced sensor control; use SparkFun's for cross-platform compatibility across Python/MicroPython/CircuitPython.*
+*7/23/25 - I just came across the newly released SparkFun library for the AS7343. Comparisons are shown at the end of this README.md. TL;DR: Use this library for CircuitPython-only projects that need advanced sensor control or prefer to work with adafruit; use SparkFun's for cross-platform compatibility across Python/MicroPython/CircuitPython or prefer to work with sparkfun.*
 
 A CircuitPython driver for the AMS AS7343 14-channel spectral sensor. This device provides high-resolution spectral measurements across the visible and near-infrared spectrum, making it ideal for:
 
