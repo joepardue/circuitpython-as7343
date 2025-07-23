@@ -90,8 +90,20 @@ Supported Channels
 - NIR – Near infrared (~855 nm)
 - CLR – Clear (broadband)
 
-## Included in the CircuitPython Community Bundle 🌟
+TODO 7/23/25 - these will be added soon
+---------------------------------------
+**auto_range_optimal()** - Automatically determines optimal gain and integration time settings to maximize ADC resolution without saturation.
 
+**is_saturated()** - Detects when sensor channels have reached their measurement limits and data is no longer reliable.
+
+**get_saturated_channels()** - Identifies which specific channels are saturated to enable targeted parameter adjustment.
+
+**get_basic_counts()** - Normalizes raw ADC values by gain and integration time to enable meaningful comparison across different sensor settings.
+
+**get_measurement_parameters()** - Returns current sensor configuration values needed for external data processing and calculations.
+
+Included in the CircuitPython Community Bundle 🌟
+-------------------------------------------------
 This `circuitpython-as7343` library has been officially accepted into the
 [CircuitPython Community Library Bundle](https://github.com/adafruit/CircuitPython_Community_Bundle).
 
@@ -104,7 +116,8 @@ under "New CircuitPython Libraries."
 To easily use this library, it's recommended to download the full bundle from
 [circuitpython.org/libraries](https://circuitpython.org/libraries).
 
-##Comparison with SparkFun AS7343 Library
+Comparison with SparkFun AS7343 Library
+---------------------------------------
 Use this library if you:
 
 Are building CircuitPython projects with other Adafruit sensors
