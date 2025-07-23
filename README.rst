@@ -1,8 +1,7 @@
 AS7343 CircuitPython Library
 =============================
 
-7/20/25 THERE IS A PROBLEM WITH F4 THAT I AM LOOKING INTO. I'D RECOMMEND CHECKING BACK IN A FEW DAYS
-7/21/24 MAYBE THERE ISN'T AN ACTUAL PROBLEM - I NEED TO CHECK A FEW THINGS. APPARENTLY TWO OF THE CHANNELS DO HAVE MUCH LOWER READINGS THAN THE REST. I'LL LOOK INTO NORMALIZING THE DATA.
+7/23/25 - I just came across the newly released SparkFun library for the AS7343. Comparisons* are shown at the end of this README.md. TL;DR: Use this library for CircuitPython-only projects that need advanced sensor control; use SparkFun's for cross-platform compatibility across Python/MicroPython/CircuitPython.
 
 A CircuitPython driver for the AMS AS7343 14-channel spectral sensor. This device provides high-resolution spectral measurements across the visible and near-infrared spectrum, making it ideal for:
 
@@ -104,6 +103,27 @@ under "New CircuitPython Libraries."
 
 To easily use this library, it's recommended to download the full bundle from
 [circuitpython.org/libraries](https://circuitpython.org/libraries).
+
+*Comparison with SparkFun AS7343 Library
+Use this library if you:
+
+Are building CircuitPython projects with other Adafruit sensors
+Want advanced features like SMUX mode control and power management
+Prefer native CircuitPython integration and performance
+
+Use SparkFun's library if you:
+
+Need to run the same code across Python/MicroPython/CircuitPython platforms
+Want access to all data registers and measurement cycles
+Are already using other SparkFun Qwiic sensors
+
+Key Differences:
+
+Platform Support: This library is CircuitPython-only; SparkFun's works across multiple Python variants
+Integration: Uses adafruit_bus_device; SparkFun's uses their qwiic_i2c abstraction
+API Focus: This library emphasizes the 14 distinct sensor channels; SparkFun's exposes lower-level register access
+
+Both are well-maintained. Choose based on your platform requirements and feature needs.
 
 License
 -------
