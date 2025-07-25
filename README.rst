@@ -187,6 +187,10 @@ API Focus: This library emphasizes the 14 distinct sensor channels; SparkFun's e
 
 Both are well-maintained. Choose based on your platform requirements and feature needs.
 
+IMPORTANT NOTE:
+---------------
+Some folks on the Internet have tried to fix the problem of F3 and F8 indicating counts at 25% of the rest of the channels. This isn't actually a problem, but inherent in those channels as shown in Figure 8 of the datasheet: https://look.ams-osram.com/m/5f2d27fff9a874d2/original/AS7343-14-Channel-Multi-Spectral-Sensor.pdf
+
 License
 -------
 
