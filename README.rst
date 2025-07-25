@@ -150,6 +150,7 @@ For applications requiring temperature compensation, auto-ranging, or advanced c
 - **Calibration data management** - Stores and applies correction factors
 
 These advanced features are maintained separately to keep the core driver focused and lightweight.
+7/25/25 - work in progress... details to follow
 
 Included in the CircuitPython Community Bundle 🌟
 -------------------------------------------------
