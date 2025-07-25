@@ -4,6 +4,9 @@ AS7343 CircuitPython Library
 
 *7/23/25 - I just came across the newly released SparkFun library for the AS7343. Comparisons are shown at the end of this README.md. TL;DR: Use this library for CircuitPython-only projects that need advanced sensor control or if you prefer to work with adafruit; use sparkfun's for cross-platform compatibility across Python/MicroPython/CircuitPython or if you prefer to work with sparkfun.*
 
+*7/25/25 This code is all tested with the Pimoroni I2C AS7343 breakout board since Adafruit does not, at present, have on. It works well withing the Adafruit CircuitPython ecosystem and may be viewed at:
+https://shop.pimoroni.com/products/as7343-breakout?variant=41694602526803* 
+
 A CircuitPython driver for the AMS AS7343 14-channel spectral sensor. This device provides high-resolution spectral measurements across the visible and near-infrared spectrum, making it ideal for:
 
 - Color measurement and classification
@@ -190,7 +193,7 @@ Both are well-maintained. Choose based on your platform requirements and feature
 
 IMPORTANT NOTE:
 ---------------
-Some folks on the Internet have tried to fix the problem of F3 and F8 indicating counts at 25% of the rest of the channels. This isn't actually a problem, but inherent in those channels as shown in Figure 8 of the datasheet: https://look.ams-osram.com/m/5f2d27fff9a874d2/original/AS7343-14-Channel-Multi-Spectral-Sensor.pdf
+Some folks on the Internet have tried to fix the problem of F3 and F8 indicating counts at ~25% of the rest of the channels. This isn't actually a problem, but inherent in those channels as shown in Figure 8 of the datasheet: https://look.ams-osram.com/m/5f2d27fff9a874d2/original/AS7343-14-Channel-Multi-Spectral-Sensor.pdf
 
 License
 -------
