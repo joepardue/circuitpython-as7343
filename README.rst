@@ -1,3 +1,4 @@
+cat > README.rst << 'EOF'
 AS7343 CircuitPython Library
 =============================
 
@@ -23,7 +24,7 @@ The AMS AS7343 is a spectral sensor offering readings from approximately 380nm t
 
 This driver provides methods to set gain/integration time, select SMUX modes, perform full or partial scans, and manage power settings.
 
-**Note about Channel Sensitivity:** Some channels (particularly F4 and FXL) naturally produce significantly lower values due to their specific spectral sensitivity characteristics. This is expected hardware behavior, not a software error. See the AS7343 datasheet Figure 8 for detailed spectral response curves showing the varying sensitivity across channels.
+**Note about Channel Sensitivity:** Some channels (particularly F3, F4, F8, and FXL) naturally produce significantly lower values due to their specific spectral sensitivity characteristics. This is expected hardware behavior, not a software error. See the AS7343 datasheet Figure 8 for detailed spectral response curves showing the varying sensitivity across channels.
 
 Features
 --------
@@ -41,7 +42,7 @@ Installation
 
 1. Download the CircuitPython library bundle from https://circuitpython.org/libraries
 2. Copy the following into the `lib/` directory on your device:
-   - `as7343.py` (from this repo)
+   - `as7343/__init__.py` (from this repo)
    - `adafruit_bus_device` (from the bundle)
 
 Usage Example
@@ -104,34 +105,34 @@ Supported Channels
 - NIR – Near infrared (~855 nm)
 - CLR – Clear (broadband)
 
-**Note:** F4 and FXL channels typically show lower values due to their specific spectral sensitivity. This is normal hardware behavior - see AS7343 datasheet Figure 8 for spectral response details.
+**Note:** F3, F4, F8, and FXL channels typically show lower values due to their specific spectral sensitivity. This is normal hardware behavior - see AS7343 datasheet Figure 8 for spectral response details.
 
 Testing the Driver
 ------------------
 
 The library includes comprehensive test modules for validating functionality. Copy any of these to `code.py` to test specific features:
 
-**test_basic.py** - Tests initialization, property API, and basic functionality::
+**examples/as7343_test_basic.py** - Tests initialization, property API, and basic functionality::
 
     # Tests gain/integration time properties, power management basics
     # Expected: All PASS results for property setting/getting
 
-**test_smux.py** - Tests sensor multiplexer functionality::
+**examples/as7343_test_SMUX.py** - Tests sensor multiplexer functionality::
 
     # Tests SMUX mode switching, channel mapping, error handling  
     # Expected: Proper channel counts per mode (VISIBLE: 5, NIR: 6, FZF5: 2)
 
-**test_measurement.py** - Tests full spectral measurement system::
+**examples/as7343_test_measurement.py** - Tests full spectral measurement system::
 
     # Tests read_all(), data/channels properties, timing, repeatability
     # Expected: 13 channels, ~1.5 second measurement time, stable readings
 
-**test_power.py** - Tests power management features::
+**examples/as7343_test_power.py** - Tests power management features::
 
     # Tests shutdown/wake cycles, low power mode, SAI functionality
     # Expected: Robust power cycling, no measurement failures
 
-**test_thresholds.py** - Tests threshold detection::
+**examples/as7343_test_thresholds.py** - Tests threshold detection::
 
     # Tests check_thresholds(), saturation detection, error handling
     # Expected: Proper threshold flagging, graceful error handling
@@ -187,6 +188,10 @@ API Focus: This library emphasizes the 14 distinct sensor channels; SparkFun's e
 
 Both are well-maintained. Choose based on your platform requirements and feature needs.
 
+IMPORTANT NOTE:
+---------------
+Some folks on the Internet have tried to fix the problem of F3 and F8 indicating counts at 25% of the rest of the channels. This isn't actually a problem, but inherent in those channels as shown in Figure 8 of the datasheet: https://look.ams-osram.com/m/5f2d27fff9a874d2/original/AS7343-14-Channel-Multi-Spectral-Sensor.pdf
+
 License
 -------
 
@@ -196,3 +201,4 @@ Author
 ------
 
 Joe Pardue https://github.com/joepardue/AS7343-circuitpython-bundle
+EOF
