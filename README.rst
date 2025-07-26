@@ -1,4 +1,3 @@
-cat > README.rst << 'EOF'
 AS7343 CircuitPython Library
 =============================
 
